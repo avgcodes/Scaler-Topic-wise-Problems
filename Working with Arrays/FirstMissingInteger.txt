@@ -1,0 +1,141 @@
+// C++ 
+
+int Solution::firstMissingPositive(vector<int> &A) {
+    int n = A.size();
+    int pos = 0;
+
+    for(int i=0; i<n; i++)
+    {
+        if(A[i] > 0 && A[i] <= n)
+        {
+            pos = A[i]-1;
+            if(A[pos] != A[i])
+            {
+                swap(A[pos], A[i]);
+                i--;
+            }
+        }
+    }
+    
+    for(int i=0; i<n; i++)
+    {
+        if(A[i] != i+1)
+        {
+            return i+1;
+        }
+    }
+    return n+1;
+}
+
+
+// Java
+
+public class Solution {
+    public int firstMissingPositive(ArrayList<Integer> A) {
+        int n = A.size();
+        for (int i = 0; i < n; i++) {
+            if (A.get(i) > 0 && A.get(i) <= n) {
+                int pos = A.get(i) - 1;
+                if (A.get(pos) != A.get(i)) {
+                    Collections.swap(A, pos, i);
+                    i--;
+                }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (A.get(i) != i + 1) 
+                return (i + 1);
+        }
+        return n + 1;
+    }
+}
+
+// Python
+
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def firstMissingPositive(self, A):
+        j = 0
+        n = len(A)
+        for i in range(n):
+            if A[i] <= 0:
+                A[i],A[j] = A[j],A[i]
+                j+=1
+        for i in range(j,n):
+            if abs(A[i])-1+j < n and A[abs(A[i])-1+j] > 0:
+                A[abs(A[i])-1+j] = -A[abs(A[i])-1+j]
+        for i in range(j,n):
+            if A[i] > 0:
+                return i-j+1
+        return n - j + 1
+
+// Javascript
+
+module.exports = {
+  //param A : array of integers
+  //return an integer
+  firstMissingPositive: function (A) {
+    A = A.map((ele) => ele - 1);
+    let id = 0;
+    while (id < A.length) {
+      if (A[id] >= 0 && A[id] < A.length) {
+        let now = A[id];
+        if (A[now] != A[id]) {
+          [A[now], A[id]] = [A[id], A[now]];
+          id--;
+        }
+      }
+      id++;
+    }
+    for (let i = 0; i < A.length; i++) {
+      if (i != A[i]) return i + 1;
+    }
+    return A.length + 1;
+  },
+};
+
+// Go
+
+func firstMissingPositive(A []int )  (int) {
+    n := len(A)
+    for i := 0; i < n; i++ {
+        if A[i] > 0 && A[i] <= n {
+            pos := A[i] - 1
+            if (A[pos] != A[i]) {
+                A[pos], A[i] = A[i], A[pos]
+                i -= 1
+            }
+        }
+    }
+    for i := 0; i < n; i++ {
+        if (A[i] != i + 1) {
+            return i + 1
+        }
+    }
+    return n + 1
+}
+
+// C#
+
+class Solution {
+    public int firstMissingPositive(List<int> A) {
+        int n = A.Count;
+        for (int i = 0; i < n; i++) {
+            if (A[i] > 0 && A[i] <= n) {
+                int pos = A[i] - 1;
+                if (A[pos] != A[i]) {
+                    int temp = A[pos];
+                    A[pos] = A[i];
+                    A[i] = temp;
+                    i--;
+                }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (A[i] != i + 1) 
+                return (i + 1);
+        }
+        return n + 1;
+    }
+}
