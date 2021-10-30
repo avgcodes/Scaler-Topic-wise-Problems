@@ -1,4 +1,4 @@
-// C++ 
+//---------------    C++  --------------------------
 
 int Solution::firstMissingPositive(vector<int> &A) {
     int n = A.size();
@@ -28,7 +28,7 @@ int Solution::firstMissingPositive(vector<int> &A) {
 }
 
 
-// Java
+//---------------    Java  --------------------------
 
 public class Solution {
     public int firstMissingPositive(ArrayList<Integer> A) {
@@ -50,7 +50,7 @@ public class Solution {
     }
 }
 
-// Python
+//---------------    Python  --------------------------
 
 class Solution:
     # @param A : list of integers
@@ -70,7 +70,7 @@ class Solution:
                 return i-j+1
         return n - j + 1
 
-// Javascript
+//---------------    Javascript  --------------------------
 
 module.exports = {
   //param A : array of integers
@@ -95,7 +95,7 @@ module.exports = {
   },
 };
 
-// Go
+//---------------    Go  --------------------------
 
 func firstMissingPositive(A []int )  (int) {
     n := len(A)
@@ -116,7 +116,7 @@ func firstMissingPositive(A []int )  (int) {
     return n + 1
 }
 
-// C#
+//---------------    C#  --------------------------
 
 class Solution {
     public int firstMissingPositive(List<int> A) {
