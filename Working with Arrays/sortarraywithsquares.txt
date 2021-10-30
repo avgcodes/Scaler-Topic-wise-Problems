@@ -1,0 +1,149 @@
+//---------------    C++  1st approach --------------------------
+
+vector<int> Solution::solve(vector<int> &A) 
+{
+    int n = A.size();
+    vector<int> ans;
+    int i=0; 
+    while(A[i] < 0)
+    {
+        i++;
+    }
+    int j = i;
+    i--;
+    
+    while(i>=0 && j<n)
+    {
+        if(abs(A[i]) < abs(A[j]))
+        {
+            ans.push_back(A[i]*A[i]);
+            i--;
+        }
+        else
+        {
+            ans.push_back(A[j]*A[j]);
+            j++;
+        }
+    }
+    
+    while(i>=0)
+    {
+        ans.push_back(A[i]*A[i]);
+        i--;
+    }
+    
+    while(j<n)
+    {
+        ans.push_back(A[j]*A[j]);
+        j++;
+    }
+    return ans;
+}
+
+//--------------- C++ 2nd approach ---------------------
+
+vector < int > sortSquares(vector < int > & arr) {
+  // first dived array into part negative and positive
+  int n = arr.size();
+  int K = 0;
+
+  for (K = 0; K < n; K++)
+    if (arr[K] >= 0)
+      break;
+
+  // Now do the same process that we learn
+  // in merge sort to merge to two sorted array
+  // here both two half are sorted and we traverse
+  // first half in reverse meaner because
+  // first half contain negative element
+  int i = K - 1; // Initial index of first half
+  int j = K; // Initial index of second half
+  int ind = 0; // Initial index of temp array
+
+  // store sorted array
+  vector < int > temp(n);
+  while (i >= 0 && j < n) {
+    if (arr[i] * arr[i] < arr[j] * arr[j]) {
+      temp[ind] = arr[i] * arr[i];
+      i--;
+    } else {
+      temp[ind] = arr[j] * arr[j];
+      j++;
+    }
+    ind++;
+  }
+
+  /* Copy the remaining elements of first half */
+  while (i >= 0) {
+    temp[ind] = arr[i] * arr[i];
+    i--;
+    ind++;
+  }
+
+  /* Copy the remaining elements of second half */
+  while (j < n) {
+    temp[ind] = arr[j] * arr[j];
+    j++;
+    ind++;
+  }
+  return temp;
+}
+
+vector < int > Solution::solve(vector < int > & A) {
+  return sortSquares(A);
+}
+
+//---------------    Python  --------------------------
+
+def sortSquares(arr): 
+      
+    n=len(arr)
+    # first dived array into part negative and positive 
+    K = 0
+    for K in range(n): 
+        if (arr[K] >= 0 ): 
+            break
+      
+    # Now do the same process that we learn 
+    # in merge sort to merge to two sorted array 
+    # here both two half are sorted and we traverse 
+    # first half in reverse meaner because 
+    # first half contain negative element 
+    i = K - 1 # Initial index of first half 
+    j = K # Initial index of second half 
+    ind = 0 # Initial index of temp array 
+      
+    # store sorted array 
+    temp = [0]*n 
+    while (i >= 0 and j < n): 
+          
+        if (arr[i] * arr[i] < arr[j] * arr[j]): 
+            temp[ind] = arr[i] * arr[i] 
+            i -= 1
+          
+        else: 
+              
+            temp[ind] = arr[j] * arr[j] 
+            j += 1
+              
+        ind += 1
+      
+    ''' Copy the remaining elements of first half '''
+    while (i >= 0): 
+          
+        temp[ind] = arr[i] * arr[i] 
+        i -= 1
+        ind += 1
+          
+    ''' Copy the remaining elements of second half '''
+    while (j < n): 
+        temp[ind] = arr[j] * arr[j] 
+        j += 1
+        ind += 1
+    
+    return temp
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def solve(self, A):
+        return sortSquares(A)
